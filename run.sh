@@ -1,3 +1,8 @@
 #!/bin/sh
 
-docker run --rm -p 7860:7860 diffusion
+docker run \
+  -d \
+  --rm \
+  -p 7860:7860 \
+  --name diffusion \
+diffusion

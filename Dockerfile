@@ -25,7 +25,6 @@ RUN apt-get update && \
 RUN useradd -ms /bin/bash diffusion
 USER diffusion
 WORKDIR /home/diffusion
-COPY start.sh /home/diffusion/
 
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd stable-diffusion-webui && \
@@ -35,6 +34,8 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     . /home/diffusion/stable-diffusion-webui/venv/bin/activate && \
     sed -i 's/^start_webui()//' launch.py && \
     python3 launch.py
+
+COPY start.sh /home/diffusion/
 
 EXPOSE 7860/tcp
 CMD /home/diffusion/start.sh
